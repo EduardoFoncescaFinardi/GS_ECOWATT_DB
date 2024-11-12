@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="T EW CONSUMO DIARIO APARELHO T EW APARELHO ELETRONICO FK" directorySegmentName="seg_0" id="609FEBA5-B18F-B8F5-A28A-E813AE0CFFFE">
+<createdBy>labsfiap</createdBy>
+<createdTime>2024-11-12 13:29:07 UTC</createdTime>
+<ownerDesignName>GS _MR_DATABASE_ECOWATT</ownerDesignName>
+<engineerTo>
+<item key="D2F3EF0C-7C91-5936-55BB-CDC54BF18F92" value="true"/>
+</engineerTo>
+<sourcePk>7C07B39A-6323-5F84-A879-8F0696DDA9D2</sourcePk>
+<identifying>false</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>6760BD33-540E-FAD5-E834-FEADE70B1863</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>87AA3CF1-033B-68F8-E2A2-B836962B5987</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

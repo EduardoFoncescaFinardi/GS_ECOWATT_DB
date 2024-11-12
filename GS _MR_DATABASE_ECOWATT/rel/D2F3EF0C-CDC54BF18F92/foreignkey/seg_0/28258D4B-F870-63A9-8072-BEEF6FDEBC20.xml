@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="28258D4B-F870-63A9-8072-BEEF6FDEBC20" containerWithKeyObject="88EAF8CF-60A2-C366-7BDD-43623A5371D8" localFKIndex="6B9C1ADA-85E5-71DE-B80E-F02D4CCF9481" name="T_EW_PREVISAO_CONSUMO_T_EW_USUÁRIO_FK">
+<createdBy>labsfiap</createdBy>
+<createdTime>2024-11-12 13:48:54 UTC</createdTime>
+<generatorID>23F36BA2-75A7-0ECB-18BF-1220ABCF9CC6</generatorID>
+<ownerDesignName>GS _MR_DATABASE_ECOWATT</ownerDesignName>
+<referredTableLongName>T_EW_USUÁRIO</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>258C55EF-0552-5249-713A-922EE97160F5</referredTableID>
+<keyObject>F629AC65-9B6C-7687-DCB1-E4FEA587518C</keyObject>
+<referredKeyID>F629AC65-9B6C-7687-DCB1-E4FEA587518C</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>id_usuario</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

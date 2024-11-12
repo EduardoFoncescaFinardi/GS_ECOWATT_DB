@@ -1,0 +1,7 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<BusinessInfoDesign class="oracle.dbtools.crest.model.businessinfo.BusinessInfoDesign" name="Business Information" id="ADAC62E7-B8FC-98E0-663C-0758E5449670">
+<createdBy>labsfiap</createdBy>
+<createdTime>2024-11-12 11:27:58 UTC</createdTime>
+<ownerDesignName>GS _MR_DATABASE_ECOWATT</ownerDesignName>
+<shouldBeOpen>false</shouldBeOpen>
+</BusinessInfoDesign>

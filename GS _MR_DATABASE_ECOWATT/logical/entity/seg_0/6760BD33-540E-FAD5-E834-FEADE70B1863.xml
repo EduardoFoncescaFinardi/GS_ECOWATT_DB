@@ -1,0 +1,113 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="6760BD33-540E-FAD5-E834-FEADE70B1863" name="T EW APARELHO ELETRONICO">
+<createdBy>labsfiap</createdBy>
+<createdTime>2024-11-12 11:42:11 UTC</createdTime>
+<ownerDesignName>GS _MR_DATABASE_ECOWATT</ownerDesignName>
+<engineerTo>
+<item key="D2F3EF0C-7C91-5936-55BB-CDC54BF18F92" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="id aparelho eletronico" id="57EF1A87-968D-D6B5-4ED9-A1B20F38A669">
+<createdBy>labsfiap</createdBy>
+<createdTime>2024-11-12 11:43:55 UTC</createdTime>
+<ownerDesignName>GS _MR_DATABASE_ECOWATT</ownerDesignName>
+<engineerTo>
+<item key="D2F3EF0C-7C91-5936-55BB-CDC54BF18F92" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="nm nome" id="3FA5A2A6-4002-712C-30FA-DD47EB60FD46">
+<createdBy>labsfiap</createdBy>
+<createdTime>2024-11-12 11:44:12 UTC</createdTime>
+<ownerDesignName>GS _MR_DATABASE_ECOWATT</ownerDesignName>
+<engineerTo>
+<item key="D2F3EF0C-7C91-5936-55BB-CDC54BF18F92" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="vl consumo watts" id="A1E8A4E0-6C31-51FD-C8F2-4BDF3CC70271">
+<createdBy>labsfiap</createdBy>
+<createdTime>2024-11-12 11:45:17 UTC</createdTime>
+<ownerDesignName>GS _MR_DATABASE_ECOWATT</ownerDesignName>
+<engineerTo>
+<item key="D2F3EF0C-7C91-5936-55BB-CDC54BF18F92" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT026</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,10,2</ownDataTypeParameters>
+</Attribute>
+<Attribute name="ds categoria" id="713D6627-B65B-3A8C-9B9F-8B8CA11DF54A">
+<createdBy>labsfiap</createdBy>
+<createdTime>2024-11-12 11:46:26 UTC</createdTime>
+<ownerDesignName>GS _MR_DATABASE_ECOWATT</ownerDesignName>
+<engineerTo>
+<item key="D2F3EF0C-7C91-5936-55BB-CDC54BF18F92" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="ds modelo" id="5A586E77-E086-F056-A5E8-642B06DFBB5B">
+<createdBy>labsfiap</createdBy>
+<createdTime>2024-11-12 11:46:41 UTC</createdTime>
+<ownerDesignName>GS _MR_DATABASE_ECOWATT</ownerDesignName>
+<engineerTo>
+<item key="D2F3EF0C-7C91-5936-55BB-CDC54BF18F92" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="T EW USUÁRIO id usuario" id="1B82DBF2-F423-4E19-1D47-98FFB0E1FC4E">
+<createdBy>labsfiap</createdBy>
+<createdTime>2024-11-12 13:28:26 UTC</createdTime>
+<generatorID>9F1209CE-F11E-7CBC-553C-45F7ADA9148C</generatorID>
+<ownerDesignName>GS _MR_DATABASE_ECOWATT</ownerDesignName>
+<engineerTo>
+<item key="D2F3EF0C-7C91-5936-55BB-CDC54BF18F92" value="true"/>
+</engineerTo>
+<referedAttribute>F5CF9DAB-0BBB-8B8C-32C7-1C2DD9021337</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="7C07B39A-6323-5F84-A879-8F0696DDA9D2" name="T_EW_APARELHO_ELETRONICO_PK">
+<createdBy>labsfiap</createdBy>
+<createdTime>2024-11-12 11:44:06 UTC</createdTime>
+<ownerDesignName>GS _MR_DATABASE_ECOWATT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="D2F3EF0C-7C91-5936-55BB-CDC54BF18F92" value="false"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>57EF1A87-968D-D6B5-4ED9-A1B20F38A669</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

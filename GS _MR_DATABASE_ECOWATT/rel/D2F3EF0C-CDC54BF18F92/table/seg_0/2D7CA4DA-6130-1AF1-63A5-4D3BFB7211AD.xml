@@ -1,0 +1,112 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="2D7CA4DA-6130-1AF1-63A5-4D3BFB7211AD" name="T_EW_CONSUMO_DIARIO_APARELHO">
+<createdBy>labsfiap</createdBy>
+<createdTime>2024-11-12 13:48:54 UTC</createdTime>
+<generatorID>87AA3CF1-033B-68F8-E2A2-B836962B5987</generatorID>
+<ownerDesignName>GS _MR_DATABASE_ECOWATT</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id_consumo_diario" id="8BE5AB49-6C29-6526-E1D8-A5B7CF4BFFEA">
+<createdBy>labsfiap</createdBy>
+<createdTime>2024-11-12 13:48:54 UTC</createdTime>
+<generatorID>EE3B1C25-E903-1728-EADE-57C367827FBF</generatorID>
+<ownerDesignName>GS _MR_DATABASE_ECOWATT</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="qt_horas_uso" id="5E5458EA-D77B-2E0C-B1B7-FC2250A1FCCA">
+<createdBy>labsfiap</createdBy>
+<createdTime>2024-11-12 13:48:54 UTC</createdTime>
+<generatorID>CA81A929-4701-7DEB-19ED-DB967286784A</generatorID>
+<ownerDesignName>GS _MR_DATABASE_ECOWATT</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT026</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,10,2</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="dt_consumo" id="3E70DDB0-D3B8-9B0D-2F31-4F57BEEB32E3">
+<createdBy>labsfiap</createdBy>
+<createdTime>2024-11-12 13:48:54 UTC</createdTime>
+<generatorID>3DE383F8-8BFE-CF4A-1E16-B7FAF7340604</generatorID>
+<ownerDesignName>GS _MR_DATABASE_ECOWATT</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="vl_aparelho_consumo_watt" id="1836BC52-E65E-D4BE-C557-61C90061714A">
+<createdBy>labsfiap</createdBy>
+<createdTime>2024-11-12 13:48:54 UTC</createdTime>
+<generatorID>8E28B4FA-7108-DBCA-6517-CD7508A77069</generatorID>
+<ownerDesignName>GS _MR_DATABASE_ECOWATT</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT026</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,10,2</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="T_EW_APARELHO_ELETRONICO_id_aparelho_eletronico" id="02FF4012-FF3C-F73C-EF49-222300A220DD">
+<createdBy>labsfiap</createdBy>
+<createdTime>2024-11-12 13:48:54 UTC</createdTime>
+<generatorID>A1DC7770-3912-8F1F-17AD-77EEF5BABACF</generatorID>
+<ownerDesignName>GS _MR_DATABASE_ECOWATT</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="482E4D99-62F6-11E8-9850-2BF424475342" referredColumn="CDD588BC-FCBA-81F5-40BF-5F7C9F1E91E8"/>
+</associations>
+</Column>
+<Column name="id_consumo_diario_total" id="8CDCAD0F-8CAF-76B7-A39F-312C1985A891">
+<createdBy>labsfiap</createdBy>
+<createdTime>2024-11-12 13:48:54 UTC</createdTime>
+<generatorID>637E2247-D0BE-FE1F-3BB2-DB9239C7798A</generatorID>
+<ownerDesignName>GS _MR_DATABASE_ECOWATT</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="09021D15-CF6B-9CB2-6B14-4734344CC349" name="T_EW_CONSUMO_DIARIO_APARELHO_PK">
+<createdBy>labsfiap</createdBy>
+<createdTime>2024-11-12 13:48:54 UTC</createdTime>
+<generatorID>5FAA4260-149C-AE62-D92A-4B123AACEBAC</generatorID>
+<ownerDesignName>GS _MR_DATABASE_ECOWATT</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8BE5AB49-6C29-6526-E1D8-A5B7CF4BFFEA"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="436DA0A7-248E-19A4-300C-82085D7D761A" name="T_EW_CONSUMO_DIARIO_APARELHO_T_EW_APARELHO_ELETRONICO_FK">
+<createdBy>labsfiap</createdBy>
+<createdTime>2024-11-12 13:48:54 UTC</createdTime>
+<generatorID>609FEBA5-B18F-B8F5-A28A-E813AE0CFFFE</generatorID>
+<ownerDesignName>GS _MR_DATABASE_ECOWATT</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="02FF4012-FF3C-F73C-EF49-222300A220DD"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,100 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="5A9DF84B-4901-DB4B-D995-0BC1FF358B76" name="T_EW_META_CONSUMO_MENSAL">
+<createdBy>labsfiap</createdBy>
+<createdTime>2024-11-12 13:48:54 UTC</createdTime>
+<generatorID>1CEE3438-09D7-05FD-71C5-893DF5044E94</generatorID>
+<ownerDesignName>GS _MR_DATABASE_ECOWATT</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id_meta" id="CFD7266D-8128-82C8-94B2-60AB7DB04EA3">
+<createdBy>labsfiap</createdBy>
+<createdTime>2024-11-12 13:48:54 UTC</createdTime>
+<generatorID>E17EE549-F202-7A04-4082-679E1009F8B1</generatorID>
+<ownerDesignName>GS _MR_DATABASE_ECOWATT</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ds_meta_watts" id="64E36A18-B097-95A6-6A33-4EF369ADA151">
+<createdBy>labsfiap</createdBy>
+<createdTime>2024-11-12 13:48:54 UTC</createdTime>
+<generatorID>2C948B67-6DA2-0F1A-6B4F-915FE8E8F2EB</generatorID>
+<ownerDesignName>GS _MR_DATABASE_ECOWATT</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT026</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,10,2</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ds_meta_financeira" id="0046B618-64C3-D74F-CDA3-190C3EBC7D8C">
+<createdBy>labsfiap</createdBy>
+<createdTime>2024-11-12 13:48:54 UTC</createdTime>
+<generatorID>427FCAE0-D584-A824-BAB1-47F254C4F141</generatorID>
+<ownerDesignName>GS _MR_DATABASE_ECOWATT</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT026</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,10,2</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="T_EW_USUÁRIO_id_usuario" id="628EC755-E37C-BBC3-580C-84C47535A9F1">
+<createdBy>labsfiap</createdBy>
+<createdTime>2024-11-12 13:48:54 UTC</createdTime>
+<generatorID>F67FAA6A-B24D-920A-ED06-FF122C6D3764</generatorID>
+<ownerDesignName>GS _MR_DATABASE_ECOWATT</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="F6051235-F7C6-98C8-362B-6D820529608E" referredColumn="59E45370-17B6-C0CE-02CC-E525B52B2182"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="A0D9AD3D-60E1-8A38-5A25-EC2E4CD035D5" name="T_EW_META_CONSUMO_MENSAL_PK">
+<createdBy>labsfiap</createdBy>
+<createdTime>2024-11-12 13:48:54 UTC</createdTime>
+<generatorID>6AF6393F-851C-9F02-224C-A320FAA3C372</generatorID>
+<ownerDesignName>GS _MR_DATABASE_ECOWATT</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="CFD7266D-8128-82C8-94B2-60AB7DB04EA3"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="C04C65B1-DF0C-539F-7F7F-69B45C49B8B4" name="T_EW_META_CONSUMO_MENSAL__IDX">
+<createdBy>labsfiap</createdBy>
+<createdTime>2024-11-12 13:48:54 UTC</createdTime>
+<ownerDesignName>GS _MR_DATABASE_ECOWATT</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<relationGeneratorID>B71D8B92-4BE7-2FAC-7ED8-685599F7E160</relationGeneratorID>
+<indexColumnUsage>
+<colUsage columnID="628EC755-E37C-BBC3-580C-84C47535A9F1"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="041660AA-0D21-823F-BC00-07574C9F62AF" name="T_EW_META_CONSUMO_MENSAL_T_EW_USUÁRIO_FK">
+<createdBy>labsfiap</createdBy>
+<createdTime>2024-11-12 13:48:54 UTC</createdTime>
+<generatorID>B71D8B92-4BE7-2FAC-7ED8-685599F7E160</generatorID>
+<ownerDesignName>GS _MR_DATABASE_ECOWATT</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="628EC755-E37C-BBC3-580C-84C47535A9F1"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

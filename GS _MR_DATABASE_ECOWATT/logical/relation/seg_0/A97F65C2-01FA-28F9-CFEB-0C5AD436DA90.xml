@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_7" directorySegmentName="seg_0" id="A97F65C2-01FA-28F9-CFEB-0C5AD436DA90">
+<createdBy>labsfiap</createdBy>
+<createdTime>2024-11-12 13:19:33 UTC</createdTime>
+<ownerDesignName>GS _MR_DATABASE_ECOWATT</ownerDesignName>
+<engineerTo>
+<item key="D2F3EF0C-7C91-5936-55BB-CDC54BF18F92" value="true"/>
+</engineerTo>
+<sourcePk>37388B5D-4389-FD4E-A111-F04E71282B24</sourcePk>
+<identifying>false</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>9E3EBD27-DCEF-C1B9-AC7D-C469AE8C247D</sourceEntity>
+<targetCardinalityString>1</targetCardinalityString>
+<targetEntity>7353B079-368A-E717-20DA-7C0F51744D9F</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

@@ -1,0 +1,7 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<LogicalDesign class="oracle.dbtools.crest.model.design.logical.LogicalDesign" name="Logical" id="9172AD22-D18A-3E03-6849-C41F6BEA0D33" mainViewID="BEC7A1F1-57FE-1897-6B6E-AA285B83A333">
+<createdBy>labsfiap</createdBy>
+<createdTime>2024-11-12 11:27:57 UTC</createdTime>
+<ownerDesignName>GS _MR_DATABASE_ECOWATT</ownerDesignName>
+<shouldBeOpen>false</shouldBeOpen>
+</LogicalDesign>

@@ -1,0 +1,114 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="87AA3CF1-033B-68F8-E2A2-B836962B5987" name="T EW CONSUMO DIARIO APARELHO">
+<createdBy>labsfiap</createdBy>
+<createdTime>2024-11-12 12:11:25 UTC</createdTime>
+<ownerDesignName>GS _MR_DATABASE_ECOWATT</ownerDesignName>
+<engineerTo>
+<item key="D2F3EF0C-7C91-5936-55BB-CDC54BF18F92" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="id consumo diario" id="EE3B1C25-E903-1728-EADE-57C367827FBF">
+<createdBy>labsfiap</createdBy>
+<createdTime>2024-11-12 12:15:24 UTC</createdTime>
+<ownerDesignName>GS _MR_DATABASE_ECOWATT</ownerDesignName>
+<engineerTo>
+<item key="D2F3EF0C-7C91-5936-55BB-CDC54BF18F92" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="qt horas uso" id="CA81A929-4701-7DEB-19ED-DB967286784A">
+<createdBy>labsfiap</createdBy>
+<createdTime>2024-11-12 12:16:26 UTC</createdTime>
+<ownerDesignName>GS _MR_DATABASE_ECOWATT</ownerDesignName>
+<engineerTo>
+<item key="D2F3EF0C-7C91-5936-55BB-CDC54BF18F92" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT026</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,10,2</ownDataTypeParameters>
+</Attribute>
+<Attribute name="dt consumo" id="3DE383F8-8BFE-CF4A-1E16-B7FAF7340604">
+<createdBy>labsfiap</createdBy>
+<createdTime>2024-11-12 12:15:49 UTC</createdTime>
+<ownerDesignName>GS _MR_DATABASE_ECOWATT</ownerDesignName>
+<engineerTo>
+<item key="D2F3EF0C-7C91-5936-55BB-CDC54BF18F92" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="vl aparelho consumo watt" id="8E28B4FA-7108-DBCA-6517-CD7508A77069">
+<createdBy>labsfiap</createdBy>
+<createdTime>2024-11-12 12:17:33 UTC</createdTime>
+<ownerDesignName>GS _MR_DATABASE_ECOWATT</ownerDesignName>
+<engineerTo>
+<item key="D2F3EF0C-7C91-5936-55BB-CDC54BF18F92" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT026</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,10,2</ownDataTypeParameters>
+</Attribute>
+<Attribute name="T EW APARELHO ELETRONICO id aparelho eletronico" id="A1DC7770-3912-8F1F-17AD-77EEF5BABACF">
+<createdBy>labsfiap</createdBy>
+<createdTime>2024-11-12 13:29:07 UTC</createdTime>
+<generatorID>609FEBA5-B18F-B8F5-A28A-E813AE0CFFFE</generatorID>
+<ownerDesignName>GS _MR_DATABASE_ECOWATT</ownerDesignName>
+<engineerTo>
+<item key="D2F3EF0C-7C91-5936-55BB-CDC54BF18F92" value="true"/>
+</engineerTo>
+<referedAttribute>57EF1A87-968D-D6B5-4ED9-A1B20F38A669</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id consumo diario total" id="637E2247-D0BE-FE1F-3BB2-DB9239C7798A">
+<createdBy>labsfiap</createdBy>
+<createdTime>2024-11-12 13:32:05 UTC</createdTime>
+<generatorID>55775D1F-5BFD-2945-FEF3-10DEF9562233</generatorID>
+<ownerDesignName>GS _MR_DATABASE_ECOWATT</ownerDesignName>
+<engineerTo>
+<item key="D2F3EF0C-7C91-5936-55BB-CDC54BF18F92" value="true"/>
+</engineerTo>
+<referedAttribute>E94DB089-C870-F799-74C8-6AB5B61A869D</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="5FAA4260-149C-AE62-D92A-4B123AACEBAC" name="T_EW_CONSUMO_DIARIO_APARELHO_PK">
+<createdBy>labsfiap</createdBy>
+<createdTime>2024-11-12 12:15:48 UTC</createdTime>
+<ownerDesignName>GS _MR_DATABASE_ECOWATT</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="D2F3EF0C-7C91-5936-55BB-CDC54BF18F92" value="false"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>EE3B1C25-E903-1728-EADE-57C367827FBF</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>
