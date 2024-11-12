@@ -1,0 +1,8 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<OSDM_Design class="oracle.dbtools.crest.model.design.Design" name="GS _MR_DATABASE_ECOWATT" id="1C4D67EB-DC8D-76C9-5400-9BCFC63E86C0" version="3.5">
+<createdBy>labsfiap</createdBy>
+<createdTime>2024-11-12 11:27:57 UTC</createdTime>
+<ownerDesignName>GS _MR_DATABASE_ECOWATT</ownerDesignName>
+<capitalNames>false</capitalNames>
+<designId>1C4D67EB-DC8D-76C9-5400-9BCFC63E86C0</designId>
+</OSDM_Design>
