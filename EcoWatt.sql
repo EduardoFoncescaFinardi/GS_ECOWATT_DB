@@ -1,4 +1,6 @@
 ----------------------DROP TABLE----------------------------
+
+
 DROP TABLE T_EW_CONSUMO_DIARIO_APARELHO CASCADE CONSTRAINTS;
 DROP TABLE T_EW_CONSUMO_DIARIO_TOTAL CASCADE CONSTRAINTS;
 DROP TABLE T_EW_APARELHO_ELETRONICO CASCADE CONSTRAINTS;
@@ -14,8 +16,12 @@ DROP SEQUENCE SEQ_CONSUMO_DIARIO_APARELHO;
 DROP SEQUENCE SEQ_PREVISAO_CONSUMO;
 DROP SEQUENCE SEQ_VALOR_KWH;
 DROP SEQUENCE SEQ_META_CONSUMO_MENSAL;
+
+
 -------------------------------------------------------------
 ----------------------CREATE TABLE---------------------------
+
+
 ---
 CREATE TABLE T_EW_USUARIO (
     id_usuario INTEGER NOT NULL,
@@ -138,8 +144,11 @@ CREATE SEQUENCE SEQ_META_CONSUMO_MENSAL
   MAXVALUE 1000
   NOCYCLE;
 ---
+
+
 -------------------------------------------------------------
 ------------------PROCEDURES - INSERT------------------------
+
 ---
 CREATE OR REPLACE PROCEDURE PROC_INSERT_EW_USUARIO(
     p_Nome VARCHAR2,
@@ -180,15 +189,15 @@ END;
 
 BEGIN
     PROC_INSERT_EW_APARELHO_ELETRONICO('Geladeira', 150, 'Eletrodoméstico', 'Modelo X', 1);
-    PROC_INSERT_EW_APARELHO_ELETRONICO('Televisão', 100, 'Eletrônico', 'Modelo Y', 2);
-    PROC_INSERT_EW_APARELHO_ELETRONICO('Microondas', 1200, 'Eletrodoméstico', 'Modelo Z', 3);
-    PROC_INSERT_EW_APARELHO_ELETRONICO('Ar Condicionado', 2000, 'Climatização', 'Modelo A', 4);
-    PROC_INSERT_EW_APARELHO_ELETRONICO('Máquina de Lavar', 500, 'Eletrodoméstico', 'Modelo B', 5);
-    PROC_INSERT_EW_APARELHO_ELETRONICO('Secador de Cabelo', 1800, 'Eletrônico', 'Modelo C', 6);
-    PROC_INSERT_EW_APARELHO_ELETRONICO('Computador', 250, 'Eletrônico', 'Modelo D', 7);
-    PROC_INSERT_EW_APARELHO_ELETRONICO('Ventilador', 50, 'Climatização', 'Modelo E', 8);
-    PROC_INSERT_EW_APARELHO_ELETRONICO('Forno Elétrico', 1400, 'Eletrodoméstico', 'Modelo F', 9);
-    PROC_INSERT_EW_APARELHO_ELETRONICO('Aspirador de Pó', 600, 'Eletrodoméstico', 'Modelo G', 10);
+    PROC_INSERT_EW_APARELHO_ELETRONICO('Televisão', 100, 'Eletrônico', 'Modelo Y', 1);
+    PROC_INSERT_EW_APARELHO_ELETRONICO('Microondas', 1200, 'Eletrodoméstico', 'Modelo Z', 1);
+    PROC_INSERT_EW_APARELHO_ELETRONICO('Ar Condicionado', 2000, 'Climatização', 'Modelo A', 2);
+    PROC_INSERT_EW_APARELHO_ELETRONICO('Máquina de Lavar', 500, 'Eletrodoméstico', 'Modelo B', 2);
+    PROC_INSERT_EW_APARELHO_ELETRONICO('Secador de Cabelo', 1800, 'Eletrônico', 'Modelo C', 2);
+    PROC_INSERT_EW_APARELHO_ELETRONICO('Computador', 250, 'Eletrônico', 'Modelo D', 1);
+    PROC_INSERT_EW_APARELHO_ELETRONICO('Ventilador', 50, 'Climatização', 'Modelo E', 2);
+    PROC_INSERT_EW_APARELHO_ELETRONICO('Forno Elétrico', 1400, 'Eletrodoméstico', 'Modelo F', 1);
+    PROC_INSERT_EW_APARELHO_ELETRONICO('Aspirador de Pó', 600, 'Eletrodoméstico', 'Modelo G', 2);
 END;
 ---
 ---
@@ -203,15 +212,15 @@ END;
 
 BEGIN
     PROC_INSERT_EW_CONSUMO_DIARIO_TOTAL(15, TO_DATE('01/11/2024','DD/MM/YYYY'));
+    PROC_INSERT_EW_CONSUMO_DIARIO_TOTAL(20, TO_DATE('01/11/2024','DD/MM/YYYY'));
+    PROC_INSERT_EW_CONSUMO_DIARIO_TOTAL(18, TO_DATE('01/11/2024','DD/MM/YYYY'));
+    PROC_INSERT_EW_CONSUMO_DIARIO_TOTAL(22, TO_DATE('01/11/2024','DD/MM/YYYY'));
+    PROC_INSERT_EW_CONSUMO_DIARIO_TOTAL(19, TO_DATE('01/11/2024','DD/MM/YYYY'));
+    PROC_INSERT_EW_CONSUMO_DIARIO_TOTAL(21, TO_DATE('02/11/2024','DD/MM/YYYY'));
+    PROC_INSERT_EW_CONSUMO_DIARIO_TOTAL(23, TO_DATE('02/11/2024','DD/MM/YYYY'));
+    PROC_INSERT_EW_CONSUMO_DIARIO_TOTAL(17, TO_DATE('02/11/2024','DD/MM/YYYY'));
+    PROC_INSERT_EW_CONSUMO_DIARIO_TOTAL(16, TO_DATE('02/11/2024','DD/MM/YYYY'));
     PROC_INSERT_EW_CONSUMO_DIARIO_TOTAL(20, TO_DATE('02/11/2024','DD/MM/YYYY'));
-    PROC_INSERT_EW_CONSUMO_DIARIO_TOTAL(18, TO_DATE('03/11/2024','DD/MM/YYYY'));
-    PROC_INSERT_EW_CONSUMO_DIARIO_TOTAL(22, TO_DATE('04/11/2024','DD/MM/YYYY'));
-    PROC_INSERT_EW_CONSUMO_DIARIO_TOTAL(19, TO_DATE('05/11/2024','DD/MM/YYYY'));
-    PROC_INSERT_EW_CONSUMO_DIARIO_TOTAL(21, TO_DATE('06/11/2024','DD/MM/YYYY'));
-    PROC_INSERT_EW_CONSUMO_DIARIO_TOTAL(23, TO_DATE('07/11/2024','DD/MM/YYYY'));
-    PROC_INSERT_EW_CONSUMO_DIARIO_TOTAL(17, TO_DATE('08/11/2024','DD/MM/YYYY'));
-    PROC_INSERT_EW_CONSUMO_DIARIO_TOTAL(16, TO_DATE('09/11/2024','DD/MM/YYYY'));
-    PROC_INSERT_EW_CONSUMO_DIARIO_TOTAL(20, TO_DATE('10/11/2024','DD/MM/YYYY'));
 END;
 ---
 ---
@@ -230,14 +239,14 @@ END;
 BEGIN
     PROC_INSERT_EW_CONSUMO_DIARIO_APARELHO(5, TO_DATE('01/11/2024', 'DD/MM/YYYY'), 150, 1, 1);
     PROC_INSERT_EW_CONSUMO_DIARIO_APARELHO(3, TO_DATE('01/11/2024', 'DD/MM/YYYY'), 100, 2, 1);
-    PROC_INSERT_EW_CONSUMO_DIARIO_APARELHO(2, TO_DATE('02/11/2024', 'DD/MM/YYYY'), 1200, 3, 2);
-    PROC_INSERT_EW_CONSUMO_DIARIO_APARELHO(4, TO_DATE('02/11/2024', 'DD/MM/YYYY'), 2000, 4, 2);
-    PROC_INSERT_EW_CONSUMO_DIARIO_APARELHO(6, TO_DATE('03/11/2024', 'DD/MM/YYYY'), 500, 5, 3);
-    PROC_INSERT_EW_CONSUMO_DIARIO_APARELHO(1, TO_DATE('03/11/2024', 'DD/MM/YYYY'), 1800, 6, 3);
-    PROC_INSERT_EW_CONSUMO_DIARIO_APARELHO(8, TO_DATE('04/11/2024', 'DD/MM/YYYY'), 250, 7, 4);
-    PROC_INSERT_EW_CONSUMO_DIARIO_APARELHO(5, TO_DATE('04/11/2024', 'DD/MM/YYYY'), 50, 8, 4);
-    PROC_INSERT_EW_CONSUMO_DIARIO_APARELHO(2, TO_DATE('05/11/2024', 'DD/MM/YYYY'), 1400, 9, 5);
-    PROC_INSERT_EW_CONSUMO_DIARIO_APARELHO(3, TO_DATE('05/11/2024', 'DD/MM/YYYY'), 600, 10, 5);
+    PROC_INSERT_EW_CONSUMO_DIARIO_APARELHO(2, TO_DATE('01/11/2024', 'DD/MM/YYYY'), 1200, 3, 1);
+    PROC_INSERT_EW_CONSUMO_DIARIO_APARELHO(4, TO_DATE('01/11/2024', 'DD/MM/YYYY'), 2000, 4, 1);
+    PROC_INSERT_EW_CONSUMO_DIARIO_APARELHO(6, TO_DATE('01/11/2024', 'DD/MM/YYYY'), 500, 5, 1);
+    PROC_INSERT_EW_CONSUMO_DIARIO_APARELHO(1, TO_DATE('02/11/2024', 'DD/MM/YYYY'), 1800, 6, 2);
+    PROC_INSERT_EW_CONSUMO_DIARIO_APARELHO(8, TO_DATE('02/11/2024', 'DD/MM/YYYY'), 250, 7, 2);
+    PROC_INSERT_EW_CONSUMO_DIARIO_APARELHO(5, TO_DATE('02/11/2024', 'DD/MM/YYYY'), 50, 8, 2);
+    PROC_INSERT_EW_CONSUMO_DIARIO_APARELHO(2, TO_DATE('02/11/2024', 'DD/MM/YYYY'), 1400, 9, 2);
+    PROC_INSERT_EW_CONSUMO_DIARIO_APARELHO(3, TO_DATE('02/11/2024', 'DD/MM/YYYY'), 600, 10, 2);
 END;
 ---
 ---
@@ -255,14 +264,14 @@ END;
 BEGIN
     PROC_INSERT_EW_PREVISAO_CONSUMO(4, 300, TO_DATE('01/11/2024', 'DD/MM/YYYY'), 1);
     PROC_INSERT_EW_PREVISAO_CONSUMO(6, 450, TO_DATE('01/11/2024', 'DD/MM/YYYY'), 2);
-    PROC_INSERT_EW_PREVISAO_CONSUMO(5, 400, TO_DATE('02/11/2024', 'DD/MM/YYYY'), 3);
-    PROC_INSERT_EW_PREVISAO_CONSUMO(3, 250, TO_DATE('02/11/2024', 'DD/MM/YYYY'), 4);
-    PROC_INSERT_EW_PREVISAO_CONSUMO(7, 500, TO_DATE('03/11/2024', 'DD/MM/YYYY'), 5);
-    PROC_INSERT_EW_PREVISAO_CONSUMO(2, 150, TO_DATE('03/11/2024', 'DD/MM/YYYY'), 6);
-    PROC_INSERT_EW_PREVISAO_CONSUMO(8, 600, TO_DATE('04/11/2024', 'DD/MM/YYYY'), 7);
-    PROC_INSERT_EW_PREVISAO_CONSUMO(9, 650, TO_DATE('04/11/2024', 'DD/MM/YYYY'), 8);
-    PROC_INSERT_EW_PREVISAO_CONSUMO(1, 100, TO_DATE('05/11/2024', 'DD/MM/YYYY'), 9);
-    PROC_INSERT_EW_PREVISAO_CONSUMO(10, 700, TO_DATE('05/11/2024', 'DD/MM/YYYY'), 10);
+    PROC_INSERT_EW_PREVISAO_CONSUMO(5, 400, TO_DATE('01/11/2024', 'DD/MM/YYYY'), 1);
+    PROC_INSERT_EW_PREVISAO_CONSUMO(3, 250, TO_DATE('01/11/2024', 'DD/MM/YYYY'), 2);
+    PROC_INSERT_EW_PREVISAO_CONSUMO(7, 500, TO_DATE('01/11/2024', 'DD/MM/YYYY'), 1);
+    PROC_INSERT_EW_PREVISAO_CONSUMO(2, 150, TO_DATE('02/11/2024', 'DD/MM/YYYY'), 2);
+    PROC_INSERT_EW_PREVISAO_CONSUMO(8, 600, TO_DATE('02/11/2024', 'DD/MM/YYYY'), 1);
+    PROC_INSERT_EW_PREVISAO_CONSUMO(9, 650, TO_DATE('02/11/2024', 'DD/MM/YYYY'), 2);
+    PROC_INSERT_EW_PREVISAO_CONSUMO(1, 100, TO_DATE('02/11/2024', 'DD/MM/YYYY'), 1);
+    PROC_INSERT_EW_PREVISAO_CONSUMO(10, 700, TO_DATE('02/11/2024', 'DD/MM/YYYY'), 2);
 END;
 ---
 ---
@@ -278,14 +287,14 @@ END;
 BEGIN
     PROC_INSERT_EW_VALOR_KWH(TO_NUMBER('0.656', '999.999'), 1);
     PROC_INSERT_EW_VALOR_KWH(TO_NUMBER('0.700', '999.999'), 2);
-    PROC_INSERT_EW_VALOR_KWH(TO_NUMBER('0.680', '999.999'), 3);
-    PROC_INSERT_EW_VALOR_KWH(TO_NUMBER('0.650', '999.999'), 4);
-    PROC_INSERT_EW_VALOR_KWH(TO_NUMBER('0.690', '999.999'), 5);
-    PROC_INSERT_EW_VALOR_KWH(TO_NUMBER('0.675', '999.999'), 6);
-    PROC_INSERT_EW_VALOR_KWH(TO_NUMBER('0.710', '999.999'), 7);
-    PROC_INSERT_EW_VALOR_KWH(TO_NUMBER('0.660', '999.999'), 8);
-    PROC_INSERT_EW_VALOR_KWH(TO_NUMBER('0.685', '999.999'), 9);
-    PROC_INSERT_EW_VALOR_KWH(TO_NUMBER('0.695', '999.999'), 10);
+    PROC_INSERT_EW_VALOR_KWH(TO_NUMBER('0.680', '999.999'), 1);
+    PROC_INSERT_EW_VALOR_KWH(TO_NUMBER('0.650', '999.999'), 2);
+    PROC_INSERT_EW_VALOR_KWH(TO_NUMBER('0.690', '999.999'), 1);
+    PROC_INSERT_EW_VALOR_KWH(TO_NUMBER('0.675', '999.999'), 2);
+    PROC_INSERT_EW_VALOR_KWH(TO_NUMBER('0.710', '999.999'), 1);
+    PROC_INSERT_EW_VALOR_KWH(TO_NUMBER('0.660', '999.999'), 2);
+    PROC_INSERT_EW_VALOR_KWH(TO_NUMBER('0.685', '999.999'), 1);
+    PROC_INSERT_EW_VALOR_KWH(TO_NUMBER('0.695', '999.999'), 2);
 END;
 ---
 ---
@@ -302,14 +311,14 @@ END;
 BEGIN
     PROC_INSERT_EW_META_CONSUMO_MENSAL(300, 200, 1);
     PROC_INSERT_EW_META_CONSUMO_MENSAL(350, 250, 2);
-    PROC_INSERT_EW_META_CONSUMO_MENSAL(400, 300, 3);
-    PROC_INSERT_EW_META_CONSUMO_MENSAL(250, 180, 4);
-    PROC_INSERT_EW_META_CONSUMO_MENSAL(450, 320, 5);
-    PROC_INSERT_EW_META_CONSUMO_MENSAL(500, 350, 6);
-    PROC_INSERT_EW_META_CONSUMO_MENSAL(380, 270, 7);
-    PROC_INSERT_EW_META_CONSUMO_MENSAL(420, 290, 8);
-    PROC_INSERT_EW_META_CONSUMO_MENSAL(310, 210, 9);
-    PROC_INSERT_EW_META_CONSUMO_MENSAL(330, 230, 10);
+    PROC_INSERT_EW_META_CONSUMO_MENSAL(400, 300, 1);
+    PROC_INSERT_EW_META_CONSUMO_MENSAL(250, 180, 2);
+    PROC_INSERT_EW_META_CONSUMO_MENSAL(450, 320, 1);
+    PROC_INSERT_EW_META_CONSUMO_MENSAL(500, 350, 2);
+    PROC_INSERT_EW_META_CONSUMO_MENSAL(380, 270, 1);
+    PROC_INSERT_EW_META_CONSUMO_MENSAL(420, 290, 2);
+    PROC_INSERT_EW_META_CONSUMO_MENSAL(310, 210, 1);
+    PROC_INSERT_EW_META_CONSUMO_MENSAL(330, 230, 2);
 END; 
 ---
 ---
@@ -320,9 +329,11 @@ SELECT * FROM T_EW_CONSUMO_DIARIO_APARELHO;
 SELECT * FROM T_EW_PREVISAO_CONSUMO;
 SELECT * FROM T_EW_VALOR_KWH;
 SELECT * FROM T_EW_META_CONSUMO_MENSAL;
----
+
 -------------------------------------------------------------
 -------------------------FUNÇÕES-----------------------------
+
+
 set serveroutput on
 SET VERIFY OFF
 ---
@@ -388,10 +399,160 @@ EXCEPTION
         DBMS_OUTPUT.PUT_LINE('Erro ao calcular o consumo total: ' || SQLERRM);
         RETURN -1;
 END;
----TESTE
+---TESTE 1
 DECLARE
     consumo_total NUMBER;
 BEGIN
-    consumo_total := CalcularConsumoTotalPorData(TO_DATE('04/11/2024', 'DD/MM/YYYY'), 1);
+    consumo_total := CalcularConsumoTotalPorData(TO_DATE('01/11/2024', 'DD/MM/YYYY'), 2);
     DBMS_OUTPUT.PUT_LINE('Consumo total em kWh: ' || consumo_total);
+END;
+---TESTE 2
+DECLARE
+    consumo_total NUMBER;
+BEGIN
+    consumo_total := CalcularConsumoTotalPorData(TO_DATE('02/11/2024', 'DD/MM/YYYY'), 1);
+    DBMS_OUTPUT.PUT_LINE('Consumo total em kWh: ' || consumo_total);
+END;
+---
+
+
+-------------------------------------------------------------
+---------------------PROCEDURE - JSON------------------------
+
+
+set serveroutput on
+SET VERIFY OFF
+---
+CREATE OR REPLACE PROCEDURE ExportarDadosParaJSON(p_Json OUT CLOB) AS
+    v_Comma VARCHAR2(2) := '';
+BEGIN
+    DBMS_LOB.CREATETEMPORARY(p_Json, TRUE);
+    DBMS_LOB.TRIM(p_Json, 0);
+    DBMS_LOB.WRITEAPPEND(p_Json, LENGTH('{ "data": {'), '{ "data": {');
+    
+    DBMS_LOB.WRITEAPPEND(p_Json, LENGTH('"usuarios": ['), '"usuarios": [');
+    FOR rec IN (SELECT id_usuario, nm_nome, ds_email, cd_senha, cd_cep FROM T_EW_USUARIO) LOOP
+        DBMS_LOB.WRITEAPPEND(p_Json, LENGTH(v_Comma || '{"id_usuario": ' || rec.id_usuario ||
+                           ', "nm_nome": "' || rec.nm_nome || '"' ||
+                           ', "ds_email": "' || rec.ds_email || '"' ||
+                           ', "cd_senha": "' || rec.cd_senha || '"' ||
+                           ', "cd_cep": "' || rec.cd_cep || '"}'),
+                           v_Comma || '{"id_usuario": ' || rec.id_usuario ||
+                           ', "nm_nome": "' || rec.nm_nome || '"' ||
+                           ', "ds_email": "' || rec.ds_email || '"' ||
+                           ', "cd_senha": "' || rec.cd_senha || '"' ||
+                           ', "cd_cep": "' || rec.cd_cep || '"}');
+        v_Comma := ',';
+    END LOOP;
+    DBMS_LOB.WRITEAPPEND(p_Json, LENGTH('], '), '], ');
+    v_Comma := '';
+
+    DBMS_LOB.WRITEAPPEND(p_Json, LENGTH('"aparelhos": ['), '"aparelhos": [');
+    FOR rec IN (SELECT id_aparelho_eletronico, nm_nome, vl_consumo_watts, ds_categoria, ds_modelo, id_usuario FROM T_EW_APARELHO_ELETRONICO) LOOP
+        DBMS_LOB.WRITEAPPEND(p_Json, LENGTH(v_Comma || '{"id_aparelho_eletronico": ' || rec.id_aparelho_eletronico ||
+                           ', "nm_nome": "' || rec.nm_nome || '"' ||
+                           ', "vl_consumo_watts": ' || rec.vl_consumo_watts ||
+                           ', "ds_categoria": "' || rec.ds_categoria || '"' ||
+                           ', "ds_modelo": "' || rec.ds_modelo || '"' ||
+                           ', "id_usuario": ' || rec.id_usuario || '}'),
+                           v_Comma || '{"id_aparelho_eletronico": ' || rec.id_aparelho_eletronico ||
+                           ', "nm_nome": "' || rec.nm_nome || '"' ||
+                           ', "vl_consumo_watts": ' || rec.vl_consumo_watts ||
+                           ', "ds_categoria": "' || rec.ds_categoria || '"' ||
+                           ', "ds_modelo": "' || rec.ds_modelo || '"' ||
+                           ', "id_usuario": ' || rec.id_usuario || '}');
+        v_Comma := ',';
+    END LOOP;
+    DBMS_LOB.WRITEAPPEND(p_Json, LENGTH('], '), '], ');
+    v_Comma := '';
+
+    DBMS_LOB.WRITEAPPEND(p_Json, LENGTH('"consumo_diario_total": ['), '"consumo_diario_total": [');
+    FOR rec IN (SELECT id_consumo_total, vl_total_da_diaria, dt_da_diaria FROM T_EW_CONSUMO_DIARIO_TOTAL) LOOP
+        DBMS_LOB.WRITEAPPEND(p_Json, LENGTH(v_Comma || '{"id_consumo_total": ' || rec.id_consumo_total ||
+                           ', "vl_total_da_diaria": ' || rec.vl_total_da_diaria ||
+                           ', "dt_da_diaria": "' || TO_CHAR(rec.dt_da_diaria, 'YYYY-MM-DD') || '"}'),
+                           v_Comma || '{"id_consumo_total": ' || rec.id_consumo_total ||
+                           ', "vl_total_da_diaria": ' || rec.vl_total_da_diaria ||
+                           ', "dt_da_diaria": "' || TO_CHAR(rec.dt_da_diaria, 'YYYY-MM-DD') || '"}');
+        v_Comma := ',';
+    END LOOP;
+    DBMS_LOB.WRITEAPPEND(p_Json, LENGTH('], '), '], ');
+    v_Comma := '';
+
+    DBMS_LOB.WRITEAPPEND(p_Json, LENGTH('"consumo_diario_aparelho": ['), '"consumo_diario_aparelho": [');
+    FOR rec IN (SELECT id_consumo_diario, qt_horas_uso, dt_consumo, vl_aparelho_consumo_watt, id_aparelho_eletronico, id_consumo_total FROM T_EW_CONSUMO_DIARIO_APARELHO) LOOP
+        DBMS_LOB.WRITEAPPEND(p_Json, LENGTH(v_Comma || '{"id_consumo_diario": ' || rec.id_consumo_diario ||
+                           ', "qt_horas_uso": ' || rec.qt_horas_uso ||
+                           ', "dt_consumo": "' || TO_CHAR(rec.dt_consumo, 'YYYY-MM-DD') || '"' ||
+                           ', "vl_aparelho_consumo_watt": ' || rec.vl_aparelho_consumo_watt ||
+                           ', "id_aparelho_eletronico": ' || rec.id_aparelho_eletronico ||
+                           ', "id_consumo_total": ' || rec.id_consumo_total || '}'),
+                           v_Comma || '{"id_consumo_diario": ' || rec.id_consumo_diario ||
+                           ', "qt_horas_uso": ' || rec.qt_horas_uso ||
+                           ', "dt_consumo": "' || TO_CHAR(rec.dt_consumo, 'YYYY-MM-DD') || '"' ||
+                           ', "vl_aparelho_consumo_watt": ' || rec.vl_aparelho_consumo_watt ||
+                           ', "id_aparelho_eletronico": ' || rec.id_aparelho_eletronico ||
+                           ', "id_consumo_total": ' || rec.id_consumo_total || '}');
+        v_Comma := ',';
+    END LOOP;
+    DBMS_LOB.WRITEAPPEND(p_Json, LENGTH('], '), '], ');
+    v_Comma := '';
+
+    DBMS_LOB.WRITEAPPEND(p_Json, LENGTH('"previsao_consumo": ['), '"previsao_consumo": [');
+    FOR rec IN (SELECT id_previsao, qt_media_horas_dia, vl_consumo_previsto_mensal, dt_previsao, id_usuario FROM T_EW_PREVISAO_CONSUMO) LOOP
+        DBMS_LOB.WRITEAPPEND(p_Json, LENGTH(v_Comma || '{"id_previsao": ' || rec.id_previsao ||
+                           ', "qt_media_horas_dia": ' || rec.qt_media_horas_dia ||
+                           ', "vl_consumo_previsto_mensal": ' || rec.vl_consumo_previsto_mensal ||
+                           ', "dt_previsao": "' || TO_CHAR(rec.dt_previsao, 'YYYY-MM-DD') || '"' ||
+                           ', "id_usuario": ' || rec.id_usuario || '}'),
+                           v_Comma || '{"id_previsao": ' || rec.id_previsao ||
+                           ', "qt_media_horas_dia": ' || rec.qt_media_horas_dia ||
+                           ', "vl_consumo_previsto_mensal": ' || rec.vl_consumo_previsto_mensal ||
+                           ', "dt_previsao": "' || TO_CHAR(rec.dt_previsao, 'YYYY-MM-DD') || '"' ||
+                           ', "id_usuario": ' || rec.id_usuario || '}');
+        v_Comma := ',';
+    END LOOP;
+    DBMS_LOB.WRITEAPPEND(p_Json, LENGTH('], '), '], ');
+    v_Comma := '';
+
+    DBMS_LOB.WRITEAPPEND(p_Json, LENGTH('"valor_kwh": ['), '"valor_kwh": [');
+    FOR rec IN (SELECT id_kwh, vl_valor_kwh, id_usuario FROM T_EW_VALOR_KWH) LOOP
+        DBMS_LOB.WRITEAPPEND(p_Json, LENGTH(v_Comma || '{"id_kwh": ' || rec.id_kwh ||
+                           ', "vl_valor_kwh": ' || rec.vl_valor_kwh ||
+                           ', "id_usuario": ' || rec.id_usuario || '}'),
+                           v_Comma || '{"id_kwh": ' || rec.id_kwh ||
+                           ', "vl_valor_kwh": ' || rec.vl_valor_kwh ||
+                           ', "id_usuario": ' || rec.id_usuario || '}');
+        v_Comma := ',';
+    END LOOP;
+    DBMS_LOB.WRITEAPPEND(p_Json, LENGTH('], '), '], ');
+    v_Comma := '';
+
+    DBMS_LOB.WRITEAPPEND(p_Json, LENGTH('"meta_consumo_mensal": ['), '"meta_consumo_mensal": [');
+    FOR rec IN (SELECT id_meta, ds_meta_watts, ds_meta_financeira, id_usuario FROM T_EW_META_CONSUMO_MENSAL) LOOP
+        DBMS_LOB.WRITEAPPEND(p_Json, LENGTH(v_Comma || '{"id_meta": ' || rec.id_meta ||
+                           ', "ds_meta_watts": ' || rec.ds_meta_watts ||
+                           ', "ds_meta_financeira": ' || rec.ds_meta_financeira ||
+                           ', "id_usuario": ' || rec.id_usuario || '}'),
+                           v_Comma || '{"id_meta": ' || rec.id_meta ||
+                           ', "ds_meta_watts": ' || rec.ds_meta_watts ||
+                           ', "ds_meta_financeira": ' || rec.ds_meta_financeira ||
+                           ', "id_usuario": ' || rec.id_usuario || '}');
+        v_Comma := ',';
+    END LOOP;
+    DBMS_LOB.WRITEAPPEND(p_Json, LENGTH(']'), ']');
+
+    DBMS_LOB.WRITEAPPEND(p_Json, LENGTH('}}'), '}}');
+
+EXCEPTION
+    WHEN OTHERS THEN
+        DBMS_OUTPUT.PUT_LINE('Erro ao gerar JSON: ' || SQLERRM);
+END;
+---
+
+DECLARE
+    json_output CLOB;
+BEGIN
+    ExportarDadosParaJSON(json_output);
+    DBMS_OUTPUT.PUT_LINE(json_output);
 END;
