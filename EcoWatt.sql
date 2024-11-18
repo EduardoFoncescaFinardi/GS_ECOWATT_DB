@@ -276,16 +276,16 @@ BEGIN
 END;
 
 BEGIN
-    PROC_INSERT_EW_VALOR_KWH(TO_NUMBER(0.656), 1);
-    PROC_INSERT_EW_VALOR_KWH(TO_NUMBER(0.700), 2);
-    PROC_INSERT_EW_VALOR_KWH(TO_NUMBER(0.680), 3);
-    PROC_INSERT_EW_VALOR_KWH(TO_NUMBER(0.650), 4);
-    PROC_INSERT_EW_VALOR_KWH(TO_NUMBER(0.690), 5);
-    PROC_INSERT_EW_VALOR_KWH(TO_NUMBER(0.675), 6);
-    PROC_INSERT_EW_VALOR_KWH(TO_NUMBER(0.710), 7);
-    PROC_INSERT_EW_VALOR_KWH(TO_NUMBER(0.660), 8);
-    PROC_INSERT_EW_VALOR_KWH(TO_NUMBER(0.685), 9);
-    PROC_INSERT_EW_VALOR_KWH(TO_NUMBER(0.695), 10);
+    PROC_INSERT_EW_VALOR_KWH(TO_NUMBER('0.656', '999.999'), 1);
+    PROC_INSERT_EW_VALOR_KWH(TO_NUMBER('0.700', '999.999'), 2);
+    PROC_INSERT_EW_VALOR_KWH(TO_NUMBER('0.680', '999.999'), 3);
+    PROC_INSERT_EW_VALOR_KWH(TO_NUMBER('0.650', '999.999'), 4);
+    PROC_INSERT_EW_VALOR_KWH(TO_NUMBER('0.690', '999.999'), 5);
+    PROC_INSERT_EW_VALOR_KWH(TO_NUMBER('0.675', '999.999'), 6);
+    PROC_INSERT_EW_VALOR_KWH(TO_NUMBER('0.710', '999.999'), 7);
+    PROC_INSERT_EW_VALOR_KWH(TO_NUMBER('0.660', '999.999'), 8);
+    PROC_INSERT_EW_VALOR_KWH(TO_NUMBER('0.685', '999.999'), 9);
+    PROC_INSERT_EW_VALOR_KWH(TO_NUMBER('0.695', '999.999'), 10);
 END;
 ---
 ---
@@ -320,3 +320,78 @@ SELECT * FROM T_EW_CONSUMO_DIARIO_APARELHO;
 SELECT * FROM T_EW_PREVISAO_CONSUMO;
 SELECT * FROM T_EW_VALOR_KWH;
 SELECT * FROM T_EW_META_CONSUMO_MENSAL;
+---
+-------------------------------------------------------------
+-------------------------FUNÇÕES-----------------------------
+set serveroutput on
+SET VERIFY OFF
+---
+CREATE OR REPLACE FUNCTION ValidarFormatoCEP(p_CEP VARCHAR2)
+RETURN BOOLEAN IS
+    cep_invalido EXCEPTION;
+BEGIN
+    IF NOT REGEXP_LIKE(p_CEP, '^\d{5}-\d{3}$') THEN
+        RAISE cep_invalido;
+    END IF;
+    RETURN TRUE;
+EXCEPTION
+    WHEN cep_invalido THEN
+        DBMS_OUTPUT.PUT_LINE('Erro: CEP inválido. Formato esperado: XXXXX-XXX.');
+        RETURN FALSE;
+    WHEN OTHERS THEN
+        DBMS_OUTPUT.PUT_LINE('Erro inesperado ao validar o CEP.');
+        RETURN FALSE;
+END;
+---TESTE VALIDO
+DECLARE
+    resultado BOOLEAN;
+BEGIN
+    resultado := ValidarFormatoCEP('12345-678'); 
+    IF resultado THEN
+        DBMS_OUTPUT.PUT_LINE('Teste de CEP válido: Sucesso');
+    ELSE
+        DBMS_OUTPUT.PUT_LINE('Teste de CEP válido: Falha');
+    END IF;
+END;
+---TESTE INVALIDO
+DECLARE
+    resultado BOOLEAN;
+BEGIN
+    resultado := ValidarFormatoCEP('12345678'); 
+    IF resultado THEN
+        DBMS_OUTPUT.PUT_LINE('Teste de CEP inválido: Sucesso');
+    ELSE
+        DBMS_OUTPUT.PUT_LINE('Teste de CEP inválido: Falha');
+    END IF;
+END;
+---
+---
+CREATE OR REPLACE FUNCTION CalcularConsumoTotalPorData(
+    p_Data DATE,
+    p_IdUsuario INTEGER
+) RETURN NUMBER IS
+    v_ConsumoTotal NUMBER := 0;
+BEGIN
+    SELECT SUM((cda.vl_aparelho_consumo_watt * cda.qt_horas_uso) / 1000)
+    INTO v_ConsumoTotal
+    FROM T_EW_CONSUMO_DIARIO_APARELHO cda
+    JOIN T_EW_APARELHO_ELETRONICO ae ON cda.id_aparelho_eletronico = ae.id_aparelho_eletronico
+    WHERE cda.dt_consumo = p_Data
+      AND ae.id_usuario = p_IdUsuario;
+
+    RETURN v_ConsumoTotal;
+
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+        RETURN 0;
+    WHEN OTHERS THEN
+        DBMS_OUTPUT.PUT_LINE('Erro ao calcular o consumo total: ' || SQLERRM);
+        RETURN -1;
+END;
+---TESTE
+DECLARE
+    consumo_total NUMBER;
+BEGIN
+    consumo_total := CalcularConsumoTotalPorData(TO_DATE('04/11/2024', 'DD/MM/YYYY'), 1);
+    DBMS_OUTPUT.PUT_LINE('Consumo total em kWh: ' || consumo_total);
+END;
