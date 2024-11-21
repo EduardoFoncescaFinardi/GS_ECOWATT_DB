@@ -461,7 +461,6 @@ BEGIN
         v_json := v_json || '    "cd_senha": "' || rec_usu.cd_senha || '",' || CHR(10);
         v_json := v_json || '    "cd_cep": "' || rec_usu.cd_cep || '",' || CHR(10);
 
-        -- Aparelhos
         v_json := v_json || '    "aparelhos": [' || CHR(10);
         DBMS_LOB.CREATETEMPORARY(v_temp, TRUE);
         FOR rec_ap IN c_aparelhos(rec_usu.id_usuario) LOOP
@@ -470,12 +469,11 @@ BEGIN
                       ', "ds_categoria": "' || rec_ap.ds_categoria || '", "ds_modelo": "' || rec_ap.ds_modelo || '"},' || CHR(10);
         END LOOP;
         IF LENGTH(v_temp) > 0 THEN
-            v_json := v_json || SUBSTR(v_temp, 1, LENGTH(v_temp)-2) || CHR(10); -- Remove última vírgula
+            v_json := v_json || SUBSTR(v_temp, 1, LENGTH(v_temp)-2) || CHR(10); 
         END IF;
         v_json := v_json || '    ],' || CHR(10);
         DBMS_LOB.FREETEMPORARY(v_temp);
 
-        -- Previsão de Consumo
         v_json := v_json || '    "previsao_consumo": [' || CHR(10);
         DBMS_LOB.CREATETEMPORARY(v_temp, TRUE);
         FOR rec_prev IN c_previsao_consumo(rec_usu.id_usuario) LOOP
@@ -485,12 +483,11 @@ BEGIN
                       ', "dt_previsao": "' || TO_CHAR(rec_prev.dt_previsao, 'YYYY-MM-DD') || '"},' || CHR(10);
         END LOOP;
         IF LENGTH(v_temp) > 0 THEN
-            v_json := v_json || SUBSTR(v_temp, 1, LENGTH(v_temp)-2) || CHR(10); -- Remove última vírgula
+            v_json := v_json || SUBSTR(v_temp, 1, LENGTH(v_temp)-2) || CHR(10); 
         END IF;
         v_json := v_json || '    ],' || CHR(10);
         DBMS_LOB.FREETEMPORARY(v_temp);
 
-        -- Valor KWh
         v_json := v_json || '    "valor_kwh": [' || CHR(10);
         DBMS_LOB.CREATETEMPORARY(v_temp, TRUE);
         FOR rec_kwh IN c_valor_kwh(rec_usu.id_usuario) LOOP
@@ -498,12 +495,11 @@ BEGIN
                       ', "vl_valor_kwh": ' || TRIM(TO_CHAR(rec_kwh.vl_valor_kwh, 'FM9990.000')) || '},' || CHR(10);
         END LOOP;
         IF LENGTH(v_temp) > 0 THEN
-            v_json := v_json || SUBSTR(v_temp, 1, LENGTH(v_temp)-2) || CHR(10); -- Remove última vírgula
+            v_json := v_json || SUBSTR(v_temp, 1, LENGTH(v_temp)-2) || CHR(10); 
         END IF;
         v_json := v_json || '    ],' || CHR(10);
         DBMS_LOB.FREETEMPORARY(v_temp);
 
-        -- Meta de Consumo Mensal
         v_json := v_json || '    "meta_consumo_mensal": [' || CHR(10);
         DBMS_LOB.CREATETEMPORARY(v_temp, TRUE);
         FOR rec_meta IN c_meta_consumo(rec_usu.id_usuario) LOOP
@@ -512,7 +508,7 @@ BEGIN
                       ', "ds_meta_financeira": ' || TRIM(TO_CHAR(rec_meta.ds_meta_financeira, 'FM999990.00')) || '},' || CHR(10);
         END LOOP;
         IF LENGTH(v_temp) > 0 THEN
-            v_json := v_json || SUBSTR(v_temp, 1, LENGTH(v_temp)-2) || CHR(10); -- Remove última vírgula
+            v_json := v_json || SUBSTR(v_temp, 1, LENGTH(v_temp)-2) || CHR(10);
         END IF;
         v_json := v_json || '    ]' || CHR(10);
         DBMS_LOB.FREETEMPORARY(v_temp);
@@ -530,3 +526,6 @@ END GeraJSONEstruturado;
 BEGIN
     GeraJSONEstruturado;
 END;
+
+---
+-------------------------------------------------------------
