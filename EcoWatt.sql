@@ -423,136 +423,110 @@ END;
 set serveroutput on
 SET VERIFY OFF
 ---
-CREATE OR REPLACE PROCEDURE ExportarDadosParaJSON(p_Json OUT CLOB) AS
-    v_Comma VARCHAR2(2) := '';
+CREATE OR REPLACE PROCEDURE GeraJSONEstruturado IS
+    CURSOR c_usuarios IS
+        SELECT id_usuario, nm_nome, ds_email, cd_senha, cd_cep
+        FROM T_EW_USUARIO;
+
+    CURSOR c_aparelhos(p_id_usuario INTEGER) IS
+        SELECT id_aparelho_eletronico, nm_nome, vl_consumo_watts, ds_categoria, ds_modelo
+        FROM T_EW_APARELHO_ELETRONICO
+        WHERE id_usuario = p_id_usuario;
+
+    CURSOR c_previsao_consumo(p_id_usuario INTEGER) IS
+        SELECT id_previsao, qt_media_horas_dia, vl_consumo_previsto_mensal, dt_previsao
+        FROM T_EW_PREVISAO_CONSUMO
+        WHERE id_usuario = p_id_usuario;
+
+    CURSOR c_valor_kwh(p_id_usuario INTEGER) IS
+        SELECT id_kwh, vl_valor_kwh
+        FROM T_EW_VALOR_KWH
+        WHERE id_usuario = p_id_usuario;
+
+    CURSOR c_meta_consumo(p_id_usuario INTEGER) IS
+        SELECT id_meta, ds_meta_watts, ds_meta_financeira
+        FROM T_EW_META_CONSUMO_MENSAL
+        WHERE id_usuario = p_id_usuario;
+
+    v_json CLOB := '';
+    v_temp CLOB := '';
 BEGIN
-    DBMS_LOB.CREATETEMPORARY(p_Json, TRUE);
-    DBMS_LOB.TRIM(p_Json, 0);
-    DBMS_LOB.WRITEAPPEND(p_Json, LENGTH('{ "data": {'), '{ "data": {');
-    
-    DBMS_LOB.WRITEAPPEND(p_Json, LENGTH('"usuarios": ['), '"usuarios": [');
-    FOR rec IN (SELECT id_usuario, nm_nome, ds_email, cd_senha, cd_cep FROM T_EW_USUARIO) LOOP
-        DBMS_LOB.WRITEAPPEND(p_Json, LENGTH(v_Comma || '{"id_usuario": ' || rec.id_usuario ||
-                           ', "nm_nome": "' || rec.nm_nome || '"' ||
-                           ', "ds_email": "' || rec.ds_email || '"' ||
-                           ', "cd_senha": "' || rec.cd_senha || '"' ||
-                           ', "cd_cep": "' || rec.cd_cep || '"}'),
-                           v_Comma || '{"id_usuario": ' || rec.id_usuario ||
-                           ', "nm_nome": "' || rec.nm_nome || '"' ||
-                           ', "ds_email": "' || rec.ds_email || '"' ||
-                           ', "cd_senha": "' || rec.cd_senha || '"' ||
-                           ', "cd_cep": "' || rec.cd_cep || '"}');
-        v_Comma := ',';
+    DBMS_LOB.CREATETEMPORARY(v_json, TRUE);
+
+    FOR rec_usu IN c_usuarios LOOP
+        v_json := v_json || '{' || CHR(10);
+        v_json := v_json || '    "_id": ' || rec_usu.id_usuario || ',' || CHR(10);
+        v_json := v_json || '    "nm_nome": "' || rec_usu.nm_nome || '",' || CHR(10);
+        v_json := v_json || '    "ds_email": "' || rec_usu.ds_email || '",' || CHR(10);
+        v_json := v_json || '    "cd_senha": "' || rec_usu.cd_senha || '",' || CHR(10);
+        v_json := v_json || '    "cd_cep": "' || rec_usu.cd_cep || '",' || CHR(10);
+
+        -- Aparelhos
+        v_json := v_json || '    "aparelhos": [' || CHR(10);
+        DBMS_LOB.CREATETEMPORARY(v_temp, TRUE);
+        FOR rec_ap IN c_aparelhos(rec_usu.id_usuario) LOOP
+            v_temp := v_temp || '        {"id_aparelho_eletronico": ' || rec_ap.id_aparelho_eletronico ||
+                      ', "nm_nome": "' || rec_ap.nm_nome || '", "vl_consumo_watts": ' || TRIM(TO_CHAR(rec_ap.vl_consumo_watts, 'FM9999990.00')) ||
+                      ', "ds_categoria": "' || rec_ap.ds_categoria || '", "ds_modelo": "' || rec_ap.ds_modelo || '"},' || CHR(10);
+        END LOOP;
+        IF LENGTH(v_temp) > 0 THEN
+            v_json := v_json || SUBSTR(v_temp, 1, LENGTH(v_temp)-2) || CHR(10); -- Remove última vírgula
+        END IF;
+        v_json := v_json || '    ],' || CHR(10);
+        DBMS_LOB.FREETEMPORARY(v_temp);
+
+        -- Previsão de Consumo
+        v_json := v_json || '    "previsao_consumo": [' || CHR(10);
+        DBMS_LOB.CREATETEMPORARY(v_temp, TRUE);
+        FOR rec_prev IN c_previsao_consumo(rec_usu.id_usuario) LOOP
+            v_temp := v_temp || '        {"id_previsao": ' || rec_prev.id_previsao ||
+                      ', "qt_media_horas_dia": ' || TRIM(TO_CHAR(rec_prev.qt_media_horas_dia, 'FM999990.00')) ||
+                      ', "vl_consumo_previsto_mensal": ' || TRIM(TO_CHAR(rec_prev.vl_consumo_previsto_mensal, 'FM999990.00')) ||
+                      ', "dt_previsao": "' || TO_CHAR(rec_prev.dt_previsao, 'YYYY-MM-DD') || '"},' || CHR(10);
+        END LOOP;
+        IF LENGTH(v_temp) > 0 THEN
+            v_json := v_json || SUBSTR(v_temp, 1, LENGTH(v_temp)-2) || CHR(10); -- Remove última vírgula
+        END IF;
+        v_json := v_json || '    ],' || CHR(10);
+        DBMS_LOB.FREETEMPORARY(v_temp);
+
+        -- Valor KWh
+        v_json := v_json || '    "valor_kwh": [' || CHR(10);
+        DBMS_LOB.CREATETEMPORARY(v_temp, TRUE);
+        FOR rec_kwh IN c_valor_kwh(rec_usu.id_usuario) LOOP
+            v_temp := v_temp || '        {"id_kwh": ' || rec_kwh.id_kwh ||
+                      ', "vl_valor_kwh": ' || TRIM(TO_CHAR(rec_kwh.vl_valor_kwh, 'FM9990.000')) || '},' || CHR(10);
+        END LOOP;
+        IF LENGTH(v_temp) > 0 THEN
+            v_json := v_json || SUBSTR(v_temp, 1, LENGTH(v_temp)-2) || CHR(10); -- Remove última vírgula
+        END IF;
+        v_json := v_json || '    ],' || CHR(10);
+        DBMS_LOB.FREETEMPORARY(v_temp);
+
+        -- Meta de Consumo Mensal
+        v_json := v_json || '    "meta_consumo_mensal": [' || CHR(10);
+        DBMS_LOB.CREATETEMPORARY(v_temp, TRUE);
+        FOR rec_meta IN c_meta_consumo(rec_usu.id_usuario) LOOP
+            v_temp := v_temp || '        {"id_meta": ' || rec_meta.id_meta ||
+                      ', "ds_meta_watts": ' || TRIM(TO_CHAR(rec_meta.ds_meta_watts, 'FM999990.00')) ||
+                      ', "ds_meta_financeira": ' || TRIM(TO_CHAR(rec_meta.ds_meta_financeira, 'FM999990.00')) || '},' || CHR(10);
+        END LOOP;
+        IF LENGTH(v_temp) > 0 THEN
+            v_json := v_json || SUBSTR(v_temp, 1, LENGTH(v_temp)-2) || CHR(10); -- Remove última vírgula
+        END IF;
+        v_json := v_json || '    ]' || CHR(10);
+        DBMS_LOB.FREETEMPORARY(v_temp);
+
+        v_json := v_json || '},' || CHR(10);
     END LOOP;
-    DBMS_LOB.WRITEAPPEND(p_Json, LENGTH('], '), '], ');
-    v_Comma := '';
 
-    DBMS_LOB.WRITEAPPEND(p_Json, LENGTH('"aparelhos": ['), '"aparelhos": [');
-    FOR rec IN (SELECT id_aparelho_eletronico, nm_nome, vl_consumo_watts, ds_categoria, ds_modelo, id_usuario FROM T_EW_APARELHO_ELETRONICO) LOOP
-        DBMS_LOB.WRITEAPPEND(p_Json, LENGTH(v_Comma || '{"id_aparelho_eletronico": ' || rec.id_aparelho_eletronico ||
-                           ', "nm_nome": "' || rec.nm_nome || '"' ||
-                           ', "vl_consumo_watts": ' || rec.vl_consumo_watts ||
-                           ', "ds_categoria": "' || rec.ds_categoria || '"' ||
-                           ', "ds_modelo": "' || rec.ds_modelo || '"' ||
-                           ', "id_usuario": ' || rec.id_usuario || '}'),
-                           v_Comma || '{"id_aparelho_eletronico": ' || rec.id_aparelho_eletronico ||
-                           ', "nm_nome": "' || rec.nm_nome || '"' ||
-                           ', "vl_consumo_watts": ' || rec.vl_consumo_watts ||
-                           ', "ds_categoria": "' || rec.ds_categoria || '"' ||
-                           ', "ds_modelo": "' || rec.ds_modelo || '"' ||
-                           ', "id_usuario": ' || rec.id_usuario || '}');
-        v_Comma := ',';
-    END LOOP;
-    DBMS_LOB.WRITEAPPEND(p_Json, LENGTH('], '), '], ');
-    v_Comma := '';
+    v_json := TRIM(TRAILING ',' FROM v_json);
 
-    DBMS_LOB.WRITEAPPEND(p_Json, LENGTH('"consumo_diario_total": ['), '"consumo_diario_total": [');
-    FOR rec IN (SELECT id_consumo_total, vl_total_da_diaria, dt_da_diaria FROM T_EW_CONSUMO_DIARIO_TOTAL) LOOP
-        DBMS_LOB.WRITEAPPEND(p_Json, LENGTH(v_Comma || '{"id_consumo_total": ' || rec.id_consumo_total ||
-                           ', "vl_total_da_diaria": ' || rec.vl_total_da_diaria ||
-                           ', "dt_da_diaria": "' || TO_CHAR(rec.dt_da_diaria, 'YYYY-MM-DD') || '"}'),
-                           v_Comma || '{"id_consumo_total": ' || rec.id_consumo_total ||
-                           ', "vl_total_da_diaria": ' || rec.vl_total_da_diaria ||
-                           ', "dt_da_diaria": "' || TO_CHAR(rec.dt_da_diaria, 'YYYY-MM-DD') || '"}');
-        v_Comma := ',';
-    END LOOP;
-    DBMS_LOB.WRITEAPPEND(p_Json, LENGTH('], '), '], ');
-    v_Comma := '';
-
-    DBMS_LOB.WRITEAPPEND(p_Json, LENGTH('"consumo_diario_aparelho": ['), '"consumo_diario_aparelho": [');
-    FOR rec IN (SELECT id_consumo_diario, qt_horas_uso, dt_consumo, vl_aparelho_consumo_watt, id_aparelho_eletronico, id_consumo_total FROM T_EW_CONSUMO_DIARIO_APARELHO) LOOP
-        DBMS_LOB.WRITEAPPEND(p_Json, LENGTH(v_Comma || '{"id_consumo_diario": ' || rec.id_consumo_diario ||
-                           ', "qt_horas_uso": ' || rec.qt_horas_uso ||
-                           ', "dt_consumo": "' || TO_CHAR(rec.dt_consumo, 'YYYY-MM-DD') || '"' ||
-                           ', "vl_aparelho_consumo_watt": ' || rec.vl_aparelho_consumo_watt ||
-                           ', "id_aparelho_eletronico": ' || rec.id_aparelho_eletronico ||
-                           ', "id_consumo_total": ' || rec.id_consumo_total || '}'),
-                           v_Comma || '{"id_consumo_diario": ' || rec.id_consumo_diario ||
-                           ', "qt_horas_uso": ' || rec.qt_horas_uso ||
-                           ', "dt_consumo": "' || TO_CHAR(rec.dt_consumo, 'YYYY-MM-DD') || '"' ||
-                           ', "vl_aparelho_consumo_watt": ' || rec.vl_aparelho_consumo_watt ||
-                           ', "id_aparelho_eletronico": ' || rec.id_aparelho_eletronico ||
-                           ', "id_consumo_total": ' || rec.id_consumo_total || '}');
-        v_Comma := ',';
-    END LOOP;
-    DBMS_LOB.WRITEAPPEND(p_Json, LENGTH('], '), '], ');
-    v_Comma := '';
-
-    DBMS_LOB.WRITEAPPEND(p_Json, LENGTH('"previsao_consumo": ['), '"previsao_consumo": [');
-    FOR rec IN (SELECT id_previsao, qt_media_horas_dia, vl_consumo_previsto_mensal, dt_previsao, id_usuario FROM T_EW_PREVISAO_CONSUMO) LOOP
-        DBMS_LOB.WRITEAPPEND(p_Json, LENGTH(v_Comma || '{"id_previsao": ' || rec.id_previsao ||
-                           ', "qt_media_horas_dia": ' || rec.qt_media_horas_dia ||
-                           ', "vl_consumo_previsto_mensal": ' || rec.vl_consumo_previsto_mensal ||
-                           ', "dt_previsao": "' || TO_CHAR(rec.dt_previsao, 'YYYY-MM-DD') || '"' ||
-                           ', "id_usuario": ' || rec.id_usuario || '}'),
-                           v_Comma || '{"id_previsao": ' || rec.id_previsao ||
-                           ', "qt_media_horas_dia": ' || rec.qt_media_horas_dia ||
-                           ', "vl_consumo_previsto_mensal": ' || rec.vl_consumo_previsto_mensal ||
-                           ', "dt_previsao": "' || TO_CHAR(rec.dt_previsao, 'YYYY-MM-DD') || '"' ||
-                           ', "id_usuario": ' || rec.id_usuario || '}');
-        v_Comma := ',';
-    END LOOP;
-    DBMS_LOB.WRITEAPPEND(p_Json, LENGTH('], '), '], ');
-    v_Comma := '';
-
-    DBMS_LOB.WRITEAPPEND(p_Json, LENGTH('"valor_kwh": ['), '"valor_kwh": [');
-    FOR rec IN (SELECT id_kwh, vl_valor_kwh, id_usuario FROM T_EW_VALOR_KWH) LOOP
-        DBMS_LOB.WRITEAPPEND(p_Json, LENGTH(v_Comma || '{"id_kwh": ' || rec.id_kwh ||
-                           ', "vl_valor_kwh": ' || rec.vl_valor_kwh ||
-                           ', "id_usuario": ' || rec.id_usuario || '}'),
-                           v_Comma || '{"id_kwh": ' || rec.id_kwh ||
-                           ', "vl_valor_kwh": ' || rec.vl_valor_kwh ||
-                           ', "id_usuario": ' || rec.id_usuario || '}');
-        v_Comma := ',';
-    END LOOP;
-    DBMS_LOB.WRITEAPPEND(p_Json, LENGTH('], '), '], ');
-    v_Comma := '';
-
-    DBMS_LOB.WRITEAPPEND(p_Json, LENGTH('"meta_consumo_mensal": ['), '"meta_consumo_mensal": [');
-    FOR rec IN (SELECT id_meta, ds_meta_watts, ds_meta_financeira, id_usuario FROM T_EW_META_CONSUMO_MENSAL) LOOP
-        DBMS_LOB.WRITEAPPEND(p_Json, LENGTH(v_Comma || '{"id_meta": ' || rec.id_meta ||
-                           ', "ds_meta_watts": ' || rec.ds_meta_watts ||
-                           ', "ds_meta_financeira": ' || rec.ds_meta_financeira ||
-                           ', "id_usuario": ' || rec.id_usuario || '}'),
-                           v_Comma || '{"id_meta": ' || rec.id_meta ||
-                           ', "ds_meta_watts": ' || rec.ds_meta_watts ||
-                           ', "ds_meta_financeira": ' || rec.ds_meta_financeira ||
-                           ', "id_usuario": ' || rec.id_usuario || '}');
-        v_Comma := ',';
-    END LOOP;
-    DBMS_LOB.WRITEAPPEND(p_Json, LENGTH(']'), ']');
-
-    DBMS_LOB.WRITEAPPEND(p_Json, LENGTH('}}'), '}}');
-
-EXCEPTION
-    WHEN OTHERS THEN
-        DBMS_OUTPUT.PUT_LINE('Erro ao gerar JSON: ' || SQLERRM);
-END;
+    DBMS_OUTPUT.PUT_LINE(v_json);
+    DBMS_LOB.FREETEMPORARY(v_json);
+END GeraJSONEstruturado;
 ---
 
-DECLARE
-    json_output CLOB;
 BEGIN
-    ExportarDadosParaJSON(json_output);
-    DBMS_OUTPUT.PUT_LINE(json_output);
+    GeraJSONEstruturado;
 END;
